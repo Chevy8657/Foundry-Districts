@@ -12,3 +12,13 @@ def test():
 @app.get("/greet/{name}")
 async def greet_user(name: str):
     return {"message": f"Hello {name}, the Factory has processed your request.", "status": "Success"}
+@app.get("/calculate")
+async def calculate(a: int, b: int):
+    result = a * b
+    return {
+        "operation": "Multiplication",
+        "input_a": a,
+        "input_b": b,
+        "total": result,
+        "message": "Automation Successful"
+    }
