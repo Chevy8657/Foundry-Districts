@@ -1,0 +1,16 @@
+# Ignore Python's messy temporary folders
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore the virtual environment (the heavy stuff)
+.venv/
+venv/
+env/
+
+# Ignore secrets (NEVER push these to GitHub)
+.env
+
+# Ignore system-specific junk
+.DS_Store
+Thumbs.db
