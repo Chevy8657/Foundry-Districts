@@ -61,6 +61,12 @@ def list_apis():
                 "method": "GET",
                 "path": "/logic/word-count",
                 "purpose": "Count the number of words in submitted text"
+            },
+            {
+                "name": "token-count",
+                "method": "GET",
+                "path": "/logic/token-count",
+                "purpose": "Count the number of tokens in submitted text"
             }
         ]
     }
@@ -94,4 +100,13 @@ async def word_count(text: str):
     return {
         "input_text": text,
         "word_count": count
+    }
+
+
+@app.get("/logic/token-count")
+async def token_count(text: str):
+    count = len(text.split())
+    return {
+        "input_text": text,
+        "token_count": count
     }
