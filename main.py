@@ -10,7 +10,7 @@ if not os.path.exists(DB_FILE):
     with open(DB_FILE, "w") as f:
         f.write("")
 
-# Root / heartbeat
+
 @app.get("/")
 def home():
     return {
@@ -18,7 +18,7 @@ def home():
         "storage": "Permanent Ledger Active"
     }
 
-# Health check
+
 @app.get("/health")
 def health():
     return {
@@ -27,7 +27,7 @@ def health():
         "runtime": "FastAPI"
     }
 
-# API catalog
+
 @app.get("/apis")
 def list_apis():
     return {
@@ -55,11 +55,17 @@ def list_apis():
                 "method": "GET",
                 "path": "/apis",
                 "purpose": "List available APIs in the district"
+            },
+            {
+                "name": "word-count",
+                "method": "GET",
+                "path": "/logic/word-count",
+                "purpose": "Count the number of words in submitted text"
             }
         ]
     }
 
-# Store data in vault
+
 @app.post("/store-data")
 async def store(item: str):
     with open(DB_FILE, "a") as f:
@@ -68,7 +74,7 @@ async def store(item: str):
         "message": f"'{item}' permanently inked to ledger."
     }
 
-# View vault contents
+
 @app.get("/view-vault")
 async def view():
     if os.path.exists(DB_FILE):
@@ -79,4 +85,13 @@ async def view():
         }
     return {
         "secured_items": []
+    }
+
+
+@app.get("/logic/word-count")
+async def word_count(text: str):
+    count = len(text.split())
+    return {
+        "input_text": text,
+        "word_count": count
     }
