@@ -3,6 +3,7 @@ import os
 
 from Logic.Word_Counter.main import router as word_counter_router
 from Logic.Token_Counter.main import router as token_counter_router
+from Utility.UUID_Generator.main import router as uuid_generator_router
 
 app = FastAPI()
 
@@ -70,6 +71,12 @@ def list_apis():
                 "method": "GET",
                 "path": "/logic/token-count",
                 "purpose": "Count the number of tokens in submitted text"
+            },
+            {
+                "name": "uuid",
+                "method": "GET",
+                "path": "/utility/uuid",
+                "purpose": "Generate a new UUID"
             }
         ]
     }
@@ -99,3 +106,4 @@ async def view():
 
 app.include_router(word_counter_router)
 app.include_router(token_counter_router)
+app.include_router(uuid_generator_router)
