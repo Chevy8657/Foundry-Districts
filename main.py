@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 import os
 
+from Logic.Word_Counter.main import router as word_counter_router
+
 app = FastAPI()
 
 DB_FILE = "vault.txt"
@@ -94,15 +96,6 @@ async def view():
     }
 
 
-@app.get("/logic/word-count")
-async def word_count(text: str):
-    count = len(text.split())
-    return {
-        "input_text": text,
-        "word_count": count
-    }
-
-
 @app.get("/logic/token-count")
 async def token_count(text: str):
     count = len(text.split())
@@ -110,3 +103,6 @@ async def token_count(text: str):
         "input_text": text,
         "token_count": count
     }
+
+
+app.include_router(word_counter_router)
