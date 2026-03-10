@@ -9,4 +9,4 @@ async def generate_uuid():
 
     return {
         "generated_uuid": new_uuid
-    }
+    } 
