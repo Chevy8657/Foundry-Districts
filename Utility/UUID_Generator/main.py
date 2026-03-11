@@ -4,9 +4,7 @@ import uuid
 router = APIRouter()
 
 @router.get("/utility/uuid")
-async def generate_uuid():
-    new_uuid = str(uuid.uuid4())
-
+def generate_uuid():
     return {
-        "generated_uuid": new_uuid
-    } 
+        "generated_uuid": str(uuid.uuid4())
+    }
