@@ -145,3 +145,16 @@ def list_apis():
             }
         ] + loaded_apis
     }
+# ---------------------------------
+# AI Discovery Manifest
+# ---------------------------------
+@app.get("/manifest")
+def manifest():
+    return {
+        "factory": "Foundry-Districts",
+        "gateway": "/",
+        "health_check": "/health",
+        "description": "Atomic capability factory providing deterministic tools for AI agents and automation workflows.",
+        "capability_count": len(loaded_apis),
+        "capabilities": loaded_apis
+    }
