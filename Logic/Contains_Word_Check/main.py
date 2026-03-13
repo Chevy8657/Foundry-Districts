@@ -1,0 +1,13 @@
+from fastapi import APIRouter
+
+router = APIRouter()
+
+@router.get("/logic/contains-word-check")
+def contains_word_check(input_text: str, target_word: str):
+    words = input_text.split()
+
+    return {
+        "input_text": input_text,
+        "target_word": target_word,
+        "contains_word": target_word in words
+    }
