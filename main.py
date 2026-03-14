@@ -1,4 +1,4 @@
-    from fastapi import FastAPI
+from fastapi import FastAPI
 import os
 import importlib.util
 from pathlib import Path
@@ -67,10 +67,6 @@ loaded_apis = []
 
 
 def load_router_from_file(module_label: str, module_file: Path):
-    """
-    Load a Python module from file and register its router
-    only if it exports a variable named 'router'.
-    """
     module_name = f"{module_label}_{module_file.parent.name}"
 
     spec = importlib.util.spec_from_file_location(module_name, module_file)
@@ -91,10 +87,6 @@ def load_router_from_file(module_label: str, module_file: Path):
 
 
 def load_district_group(group_name: str):
-    """
-    Scan a top-level folder such as Logic, Utility, Math, or Data.
-    Only load folders that contain main.py.
-    """
     base_path = Path(group_name)
 
     if not base_path.exists() or not base_path.is_dir():
@@ -169,5 +161,4 @@ def manifest():
         "description": "Atomic capability factory providing deterministic tools for AI agents and automation workflows.",
         "capability_count": len(loaded_apis),
         "capabilities": loaded_apis
-    }      
-
+    }
