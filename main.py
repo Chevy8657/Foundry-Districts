@@ -92,7 +92,7 @@ def load_router_from_file(module_label: str, module_file: Path):
 
 def load_district_group(group_name: str):
     """
-    Scan a top-level folder such as Logic or Utility.
+    Scan a top-level folder such as Logic, Utility, or Math.
     Only load folders that contain main.py.
     """
     base_path = Path(group_name)
@@ -107,9 +107,12 @@ def load_district_group(group_name: str):
                 load_router_from_file(group_name, module_file)
 
 
+# ---------------------------------
 # Load approved district groups only
+# ---------------------------------
 load_district_group("Logic")
 load_district_group("Utility")
+load_district_group("Math")
 
 
 # ---------------------------------
@@ -142,9 +145,17 @@ def list_apis():
                 "method": "GET",
                 "path": "/apis",
                 "purpose": "List available APIs in the district"
+            },
+            {
+                "name": "manifest",
+                "method": "GET",
+                "path": "/manifest",
+                "purpose": "AI discovery manifest for all loaded capabilities"
             }
         ] + loaded_apis
     }
+
+
 # ---------------------------------
 # AI Discovery Manifest
 # ---------------------------------
