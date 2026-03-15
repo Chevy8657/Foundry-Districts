@@ -116,6 +116,7 @@ load_district_group("Math")
 load_district_group("Data")
 load_district_group("Time")
 load_district_group("Network")
+load_district_group("Security")
 
 # ---------------------------------
 # API registry
