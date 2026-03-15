@@ -83,16 +83,21 @@ def load_router_from_file(module_label: str, module_file: Path):
     if hasattr(module, "router"):
         app.include_router(module.router)
 
+        routes = []
+        for route in module.router.routes:
+            if hasattr(route, "path"):
+                routes.append(route.path)
+
         loaded_apis.append({
             "name": module_file.parent.name,
             "group": module_label,
-            "path_hint": f"/{module_label.lower()}/{module_file.parent.name.lower().replace('_', '-')}"
+            "routes": routes
         })
 
 
 def load_district_group(group_name: str):
     """
-    Scan a top-level folder such as Logic, Utility, Math, or Data.
+    Scan a top-level folder such as Logic, Utility, Math, Data, Time, Network, or Security.
     Only load folders that contain main.py.
     """
     base_path = Path(group_name)
@@ -117,6 +122,7 @@ load_district_group("Data")
 load_district_group("Time")
 load_district_group("Network")
 load_district_group("Security")
+
 
 # ---------------------------------
 # API registry
