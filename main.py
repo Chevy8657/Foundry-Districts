@@ -179,3 +179,4 @@ def manifest():
         "capability_count": len(loaded_apis),
         "capabilities": loaded_apis
     }
+
