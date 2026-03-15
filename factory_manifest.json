@@ -1,0 +1,282 @@
+[
+  {
+    "district": "Logic",
+    "capability": "Boolean_And",
+    "route": "boolean-and",
+    "function_name": "boolean_and",
+    "params": [
+      {"name": "a", "type": "bool"},
+      {"name": "b", "type": "bool"}
+    ],
+    "return_fields": [
+      {"key": "a", "value": "a"},
+      {"key": "b", "value": "b"},
+      {"key": "result", "value": "a and b"}
+    ]
+  },
+  {
+    "district": "Logic",
+    "capability": "Boolean_Or",
+    "route": "boolean-or",
+    "function_name": "boolean_or",
+    "params": [
+      {"name": "a", "type": "bool"},
+      {"name": "b", "type": "bool"}
+    ],
+    "return_fields": [
+      {"key": "a", "value": "a"},
+      {"key": "b", "value": "b"},
+      {"key": "result", "value": "a or b"}
+    ]
+  },
+  {
+    "district": "Logic",
+    "capability": "Boolean_Xor",
+    "route": "boolean-xor",
+    "function_name": "boolean_xor",
+    "params": [
+      {"name": "a", "type": "bool"},
+      {"name": "b", "type": "bool"}
+    ],
+    "return_fields": [
+      {"key": "a", "value": "a"},
+      {"key": "b", "value": "b"},
+      {"key": "result", "value": "a != b"}
+    ]
+  },
+  {
+    "district": "Logic",
+    "capability": "Boolean_Nand",
+    "route": "boolean-nand",
+    "function_name": "boolean_nand",
+    "params": [
+      {"name": "a", "type": "bool"},
+      {"name": "b", "type": "bool"}
+    ],
+    "return_fields": [
+      {"key": "a", "value": "a"},
+      {"key": "b", "value": "b"},
+      {"key": "result", "value": "not (a and b)"}
+    ]
+  },
+  {
+    "district": "Logic",
+    "capability": "Boolean_Nor",
+    "route": "boolean-nor",
+    "function_name": "boolean_nor",
+    "params": [
+      {"name": "a", "type": "bool"},
+      {"name": "b", "type": "bool"}
+    ],
+    "return_fields": [
+      {"key": "a", "value": "a"},
+      {"key": "b", "value": "b"},
+      {"key": "result", "value": "not (a or b)"}
+    ]
+  },
+
+  {
+    "district": "Math",
+    "capability": "Percent_Change",
+    "route": "percent-change",
+    "function_name": "percent_change",
+    "params": [
+      {"name": "old_value", "type": "float"},
+      {"name": "new_value", "type": "float"}
+    ],
+    "return_fields": [
+      {"key": "old_value", "value": "old_value"},
+      {"key": "new_value", "value": "new_value"},
+      {"key": "percent_change", "value": "((new_value - old_value) / old_value) * 100"}
+    ]
+  },
+  {
+    "district": "Math",
+    "capability": "Percent_Of",
+    "route": "percent-of",
+    "function_name": "percent_of",
+    "params": [
+      {"name": "value", "type": "float"},
+      {"name": "percent", "type": "float"}
+    ],
+    "return_fields": [
+      {"key": "value", "value": "value"},
+      {"key": "percent", "value": "percent"},
+      {"key": "result", "value": "value * (percent / 100)"}
+    ]
+  },
+  {
+    "district": "Math",
+    "capability": "Clamp_Number",
+    "route": "clamp-number",
+    "function_name": "clamp_number",
+    "params": [
+      {"name": "value", "type": "float"},
+      {"name": "minimum", "type": "float"},
+      {"name": "maximum", "type": "float"}
+    ],
+    "return_fields": [
+      {"key": "value", "value": "value"},
+      {"key": "clamped", "value": "max(minimum, min(value, maximum))"}
+    ]
+  },
+  {
+    "district": "Math",
+    "capability": "Average_Two",
+    "route": "average-two",
+    "function_name": "average_two",
+    "params": [
+      {"name": "a", "type": "float"},
+      {"name": "b", "type": "float"}
+    ],
+    "return_fields": [
+      {"key": "a", "value": "a"},
+      {"key": "b", "value": "b"},
+      {"key": "average", "value": "(a + b) / 2"}
+    ]
+  },
+  {
+    "district": "Math",
+    "capability": "Difference",
+    "route": "difference",
+    "function_name": "difference",
+    "params": [
+      {"name": "a", "type": "float"},
+      {"name": "b", "type": "float"}
+    ],
+    "return_fields": [
+      {"key": "a", "value": "a"},
+      {"key": "b", "value": "b"},
+      {"key": "difference", "value": "a - b"}
+    ]
+  },
+
+  {
+    "district": "Utility",
+    "capability": "String_Length",
+    "route": "string-length",
+    "function_name": "string_length",
+    "params": [
+      {"name": "text", "type": "str"}
+    ],
+    "return_fields": [
+      {"key": "text", "value": "text"},
+      {"key": "length", "value": "len(text)"}
+    ]
+  },
+  {
+    "district": "Utility",
+    "capability": "String_Uppercase",
+    "route": "string-uppercase",
+    "function_name": "string_uppercase",
+    "params": [
+      {"name": "text", "type": "str"}
+    ],
+    "return_fields": [
+      {"key": "text", "value": "text"},
+      {"key": "uppercase", "value": "text.upper()"}
+    ]
+  },
+  {
+    "district": "Utility",
+    "capability": "String_Lowercase",
+    "route": "string-lowercase",
+    "function_name": "string_lowercase",
+    "params": [
+      {"name": "text", "type": "str"}
+    ],
+    "return_fields": [
+      {"key": "text", "value": "text"},
+      {"key": "lowercase", "value": "text.lower()"}
+    ]
+  },
+  {
+    "district": "Utility",
+    "capability": "String_Reverse",
+    "route": "string-reverse",
+    "function_name": "string_reverse",
+    "params": [
+      {"name": "text", "type": "str"}
+    ],
+    "return_fields": [
+      {"key": "text", "value": "text"},
+      {"key": "reversed", "value": "text[::-1]"}
+    ]
+  },
+  {
+    "district": "Utility",
+    "capability": "String_Trim",
+    "route": "string-trim",
+    "function_name": "string_trim",
+    "params": [
+      {"name": "text", "type": "str"}
+    ],
+    "return_fields": [
+      {"key": "text", "value": "text"},
+      {"key": "trimmed", "value": "text.strip()"}
+    ]
+  },
+
+  {
+    "district": "Time",
+    "capability": "Timestamp_Now",
+    "route": "timestamp-now",
+    "function_name": "timestamp_now",
+    "params": [],
+    "return_fields": [
+      {"key": "timestamp", "value": "__import__('time').time()"}
+    ]
+  },
+  {
+    "district": "Time",
+    "capability": "Seconds_To_Minutes",
+    "route": "seconds-to-minutes",
+    "function_name": "seconds_to_minutes",
+    "params": [
+      {"name": "seconds", "type": "float"}
+    ],
+    "return_fields": [
+      {"key": "seconds", "value": "seconds"},
+      {"key": "minutes", "value": "seconds / 60"}
+    ]
+  },
+  {
+    "district": "Time",
+    "capability": "Minutes_To_Seconds",
+    "route": "minutes-to-seconds",
+    "function_name": "minutes_to_seconds",
+    "params": [
+      {"name": "minutes", "type": "float"}
+    ],
+    "return_fields": [
+      {"key": "minutes", "value": "minutes"},
+      {"key": "seconds", "value": "minutes * 60"}
+    ]
+  },
+  {
+    "district": "Time",
+    "capability": "Minutes_To_Hours",
+    "route": "minutes-to-hours",
+    "function_name": "minutes_to_hours",
+    "params": [
+      {"name": "minutes", "type": "float"}
+    ],
+    "return_fields": [
+      {"key": "minutes", "value": "minutes"},
+      {"key": "hours", "value": "minutes / 60"}
+    ]
+  },
+  {
+    "district": "Time",
+    "capability": "Hours_To_Minutes",
+    "route": "hours-to-minutes",
+    "function_name": "hours_to_minutes",
+    "params": [
+      {"name": "hours", "type": "float"}
+    ],
+    "return_fields": [
+      {"key": "hours", "value": "hours"},
+      {"key": "minutes", "value": "hours * 60"}
+    ]
+  }
+]
