@@ -17,6 +17,7 @@ def build_return_block(return_fields):
 
 
 def build_code(district, route, function_name, params, return_fields):
+
     prefix = district.lower()
 
     param_string = build_params(params)
@@ -37,14 +38,14 @@ def {function_name}({param_string}):
 
 def main():
 
-    manifest_file = Path("factory_manifest.json")
+    manifest_path = Path("factory_manifest.json")
 
-    if not manifest_file.exists():
+    if not manifest_path.exists():
         print("ERROR: factory_manifest.json not found")
         return
 
-    with open(manifest_file) as f:
-        capabilities = json.load(f)
+    with open(manifest_path) as file:
+        capabilities = json.load(file)
 
     root = Path(".")
 
@@ -57,15 +58,15 @@ def main():
         params = item["params"]
         return_fields = item["return_fields"]
 
-        district_path = root / district
-        capability_path = district_path / capability
-        main_file_path = capability_path / "main.py"
+        district_folder = root / district
+        capability_folder = district_folder / capability
+        main_file = capability_folder / "main.py"
 
-        district_path.mkdir(exist_ok=True)
-        capability_path.mkdir(exist_ok=True)
+        district_folder.mkdir(exist_ok=True)
+        capability_folder.mkdir(exist_ok=True)
 
-        if main_file_path.exists():
-            print(f"SKIPPED: {main_file_path}")
+        if main_file.exists():
+            print(f"SKIPPED: {main_file}")
             continue
 
         code = build_code(
@@ -76,9 +77,9 @@ def main():
             return_fields
         )
 
-        main_file_path.write_text(code, encoding="utf-8")
+        main_file.write_text(code, encoding="utf-8")
 
-        print(f"CREATED: {main_file_path}")
+        print(f"CREATED: {main_file}")
 
 
 if __name__ == "__main__":
