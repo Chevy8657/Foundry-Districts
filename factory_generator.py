@@ -1,45 +1,5 @@
+import json
 from pathlib import Path
-
-CAPABILITIES = [
-    {
-        "district": "Logic",
-        "capability": "Boolean_Inverter",
-        "route": "boolean-inverter",
-        "function_name": "boolean_inverter",
-        "params": [
-            {"name": "value", "type": "bool"}
-        ],
-        "return_fields": [
-            {"key": "input", "value": "value"},
-            {"key": "output", "value": "not value"}
-        ]
-    },
-    {
-        "district": "Math",
-        "capability": "Number_Doubler",
-        "route": "number-doubler",
-        "function_name": "number_doubler",
-        "params": [
-            {"name": "value", "type": "float"}
-        ],
-        "return_fields": [
-            {"key": "input", "value": "value"},
-            {"key": "output", "value": "value * 2"}
-        ]
-    },
-    {
-        "district": "Time",
-        "capability": "Timestamp_Passthrough",
-        "route": "timestamp-passthrough",
-        "function_name": "timestamp_passthrough",
-        "params": [
-            {"name": "timestamp", "type": "str"}
-        ],
-        "return_fields": [
-            {"key": "timestamp", "value": "timestamp"}
-        ]
-    }
-]
 
 
 def build_params(params):
@@ -58,6 +18,7 @@ def build_return_block(return_fields):
 
 def build_code(district, route, function_name, params, return_fields):
     prefix = district.lower()
+
     param_string = build_params(params)
     return_block = build_return_block(return_fields)
 
@@ -75,9 +36,20 @@ def {function_name}({param_string}):
 
 
 def main():
+
+    manifest_file = Path("factory_manifest.json")
+
+    if not manifest_file.exists():
+        print("ERROR: factory_manifest.json not found")
+        return
+
+    with open(manifest_file) as f:
+        capabilities = json.load(f)
+
     root = Path(".")
 
-    for item in CAPABILITIES:
+    for item in capabilities:
+
         district = item["district"]
         capability = item["capability"]
         route = item["route"]
@@ -97,14 +69,15 @@ def main():
             continue
 
         code = build_code(
-            district=district,
-            route=route,
-            function_name=function_name,
-            params=params,
-            return_fields=return_fields
+            district,
+            route,
+            function_name,
+            params,
+            return_fields
         )
 
         main_file_path.write_text(code, encoding="utf-8")
+
         print(f"CREATED: {main_file_path}")
 
 
