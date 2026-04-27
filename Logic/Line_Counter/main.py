@@ -2,16 +2,16 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/line-count")
-def line_count(input_text: str):
+@router.get("/")
+def execute_tool(input_text: str):
     if input_text == "":
-        count = 0
+        processed_data = 0
     else:
         count = len(input_text.splitlines())
-        if count == 0:
-            count = 1
+        processed_data = count if count > 0 else 1
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "line_count": count
+        "result": processed_data
     }
