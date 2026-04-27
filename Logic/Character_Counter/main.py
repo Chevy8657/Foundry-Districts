@@ -2,9 +2,12 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/character-count")
-def character_count(input_text: str):
+@router.get("/")
+def execute_tool(input_text: str):
+    processed_data = len(input_text)
+
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "character_count": len(input_text)
+        "result": processed_data
     }
