@@ -3,16 +3,16 @@ from collections import Counter
 
 router = APIRouter()
 
-@router.get("/logic/word-length-distribution")
-def word_length_distribution(input_text: str):
-
+@router.get("/")
+def execute_tool(input_text: str):
     words = input_text.split()
-
     lengths = [len(word) for word in words]
-
     distribution = dict(Counter(lengths))
 
+    processed_data = distribution
+
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "distribution": distribution
+        "result": processed_data
     }
