@@ -3,11 +3,12 @@ import re
 
 router = APIRouter()
 
-@router.get("/logic/collapse-whitespace")
-def collapse_whitespace(input_text: str):
-    collapsed = re.sub(r"\s+", " ", input_text).strip()
+@router.get("/")
+def execute_tool(input_text: str):
+    processed_data = re.sub(r"\s+", " ", input_text).strip()
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "collapsed_text": collapsed
+        "result": processed_data
     }
