@@ -2,9 +2,8 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/word-count-range")
-def word_count_range(input_text: str, min_length: int, max_length: int):
-
+@router.get("/")
+def execute_tool(input_text: str, min_length: int, max_length: int):
     words = input_text.split()
 
     filtered = [
@@ -12,10 +11,13 @@ def word_count_range(input_text: str, min_length: int, max_length: int):
         if min_length <= len(word) <= max_length
     ]
 
-    return {
-        "input_text": input_text,
-        "min_length": min_length,
-        "max_length": max_length,
+    processed_data = {
         "matching_words": filtered,
         "count": len(filtered)
+    }
+
+    return {
+        "status": "SUCCESS",
+        "input_text": input_text,
+        "result": processed_data
     }
