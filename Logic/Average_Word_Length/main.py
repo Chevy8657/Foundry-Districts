@@ -2,21 +2,18 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/average-word-length")
-def average_word_length(input_text: str):
-
+@router.get("/")
+def execute_tool(input_text: str):
     words = input_text.split()
 
     if not words:
-        return {
-            "input_text": input_text,
-            "average_word_length": 0
-        }
-
-    total_length = sum(len(word) for word in words)
-    avg = total_length / len(words)
+        processed_data = 0
+    else:
+        total_length = sum(len(word) for word in words)
+        processed_data = round(total_length / len(words), 2)
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "average_word_length": round(avg, 2)
+        "result": processed_data
     }
