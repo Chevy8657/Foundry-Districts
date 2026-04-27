@@ -2,9 +2,12 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/title-case")
-def title_case(input_text: str):
+@router.get("/")
+def execute_tool(input_text: str):
+    processed_data = input_text.title()
+
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "title_case": input_text.title()
+        "result": processed_data
     }
