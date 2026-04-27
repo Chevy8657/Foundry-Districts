@@ -2,9 +2,12 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/uppercase-count")
-def uppercase_count(input_text: str):
+@router.get("/")
+def execute_tool(input_text: str):
+    processed_data = sum(1 for c in input_text if c.isupper())
+
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "uppercase_count": sum(1 for c in input_text if c.isupper())
+        "result": processed_data
     }
