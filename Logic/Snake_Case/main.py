@@ -3,12 +3,13 @@ import re
 
 router = APIRouter()
 
-@router.get("/logic/snake-case")
-def snake_case(input_text: str):
+@router.get("/")
+def execute_tool(input_text: str):
     text = re.sub(r"[^\w\s]", "", input_text)
-    text = re.sub(r"\s+", "_", text.strip()).lower()
+    processed_data = re.sub(r"\s+", "_", text.strip()).lower()
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "snake_case": text
+        "result": processed_data
     }
