@@ -2,9 +2,8 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/word-count-above-length")
-def word_count_above_length(input_text: str, min_length: int):
-
+@router.get("/")
+def execute_tool(input_text: str, min_length: int):
     words = input_text.split()
 
     filtered = [
@@ -12,9 +11,13 @@ def word_count_above_length(input_text: str, min_length: int):
         if len(word) > min_length
     ]
 
-    return {
-        "input_text": input_text,
-        "min_length": min_length,
+    processed_data = {
         "matching_words": filtered,
         "count": len(filtered)
+    }
+
+    return {
+        "status": "SUCCESS",
+        "input_text": input_text,
+        "result": processed_data
     }
