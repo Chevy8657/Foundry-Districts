@@ -2,10 +2,12 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/token-count")
-async def token_count(text: str):
-    count = len(text.split())
+@router.get("/")
+async def execute_tool(text: str):
+    processed_data = len(text.split())
+
     return {
+        "status": "SUCCESS",
         "input_text": text,
-        "token_count": count
+        "result": processed_data
     }
