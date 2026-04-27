@@ -2,10 +2,12 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/ends-with-check")
-def ends_with_check(input_text: str, suffix: str):
+@router.get("/")
+def execute_tool(input_text: str, suffix: str):
+    processed_data = input_text.endswith(suffix)
+
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "suffix": suffix,
-        "ends_with": input_text.endswith(suffix)
+        "result": processed_data
     }
