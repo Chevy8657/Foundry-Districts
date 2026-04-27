@@ -2,20 +2,17 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/ends-with-word")
-def ends_with_word(input_text: str, target_word: str):
-
+@router.get("/")
+def execute_tool(input_text: str, target_word: str):
     words = input_text.split()
 
     if not words:
-        return {
-            "input_text": input_text,
-            "target_word": target_word,
-            "ends_with_word": False
-        }
+        processed_data = False
+    else:
+        processed_data = (words[-1] == target_word)
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "target_word": target_word,
-        "ends_with_word": words[-1] == target_word
+        "result": processed_data
     }
