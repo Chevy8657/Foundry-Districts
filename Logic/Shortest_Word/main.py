@@ -2,20 +2,17 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/shortest-word")
-def shortest_word(input_text: str):
-
+@router.get("/")
+def execute_tool(input_text: str):
     words = input_text.split()
 
     if not words:
-        return {
-            "input_text": input_text,
-            "shortest_word": ""
-        }
-
-    shortest = min(words, key=len)
+        processed_data = ""
+    else:
+        processed_data = min(words, key=len)
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "shortest_word": shortest
+        "result": processed_data
     }
