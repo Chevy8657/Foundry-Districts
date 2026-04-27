@@ -2,11 +2,12 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/remove-spaces")
-def remove_spaces(input_text: str):
-    cleaned = input_text.replace(" ", "")
+@router.get("/")
+def execute_tool(input_text: str):
+    processed_data = input_text.replace(" ", "")
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "cleaned_text": cleaned
+        "result": processed_data
     }
