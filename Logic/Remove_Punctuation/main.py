@@ -3,12 +3,13 @@ import re
 
 router = APIRouter()
 
-@router.get("/logic/remove-punctuation")
-def remove_punctuation(input_text: str):
+@router.get("/")
+def execute_tool(input_text: str):
     cleaned = re.sub(r"[^\w\s]", "", input_text)
+    processed_data = cleaned
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "cleaned_text": cleaned
+        "result": processed_data
     }
-
