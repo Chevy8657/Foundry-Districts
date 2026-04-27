@@ -3,11 +3,13 @@ import re
 
 router = APIRouter()
 
-@router.get("/logic/remove-numbers")
-def remove_numbers(input_text: str):
+@router.get("/")
+def execute_tool(input_text: str):
     cleaned = re.sub(r"\d+", "", input_text)
+    processed_data = cleaned
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "cleaned_text": cleaned
+        "result": processed_data
     }
