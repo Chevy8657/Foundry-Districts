@@ -2,9 +2,12 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/letter-count")
-def letter_count(input_text: str):
+@router.get("/")
+def execute_tool(input_text: str):
+    processed_data = sum(1 for c in input_text if c.isalpha())
+
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "letter_count": sum(1 for c in input_text if c.isalpha())
+        "result": processed_data
     }
