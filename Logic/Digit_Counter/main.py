@@ -2,9 +2,12 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/digit-count")
-def digit_count(input_text: str):
+@router.get("/")
+def execute_tool(input_text: str):
+    processed_data = sum(1 for c in input_text if c.isdigit())
+
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "digit_count": sum(1 for c in input_text if c.isdigit())
+        "result": processed_data
     }
