@@ -2,20 +2,17 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/longest-word-length")
-def longest_word_length(input_text: str):
-
+@router.get("/")
+def execute_tool(input_text: str):
     words = input_text.split()
 
     if not words:
-        return {
-            "input_text": input_text,
-            "longest_length": 0
-        }
-
-    longest = max(len(word) for word in words)
+        processed_data = 0
+    else:
+        processed_data = max(len(word) for word in words)
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "longest_length": longest
+        "result": processed_data
     }
