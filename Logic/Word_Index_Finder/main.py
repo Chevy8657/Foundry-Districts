@@ -2,19 +2,21 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/word-index-finder")
-def word_index_finder(input_text: str, target_word: str):
-
+@router.get("/")
+def execute_tool(input_text: str, target_word: str):
     words = input_text.split()
 
-    indexes = []
+    positions = [
+        index for index, word in enumerate(words, start=1)
+        if word == target_word
+    ]
 
-    for index, word in enumerate(words, start=1):
-        if word == target_word:
-            indexes.append(index)
+    processed_data = {
+        "positions": positions
+    }
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "target_word": target_word,
-        "positions": indexes
+        "result": processed_data
     }
