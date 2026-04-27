@@ -2,20 +2,19 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/word-length-list")
-def word_length_list(input_text: str):
-
+@router.get("/")
+def execute_tool(input_text: str):
     words = input_text.split()
 
-    result = []
+    result = [
+        {"word": word, "length": len(word)}
+        for word in words
+    ]
 
-    for word in words:
-        result.append({
-            "word": word,
-            "length": len(word)
-        })
+    processed_data = result
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "word_lengths": result
+        "result": processed_data
     }
