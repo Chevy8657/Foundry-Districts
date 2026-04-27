@@ -2,11 +2,12 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/logic/trim-text")
-def trim_text(input_text: str):
-    trimmed = input_text.strip()
+@router.get("/")
+def execute_tool(input_text: str):
+    processed_data = input_text.strip()
 
     return {
+        "status": "SUCCESS",
         "input_text": input_text,
-        "trimmed_text": trimmed
+        "result": processed_data
     }
