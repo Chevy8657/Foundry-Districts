@@ -115,6 +115,19 @@ def generate_compliance_proof_template(defn, out_path):
     write_file(os.path.join(out_path, "compliance-proof-template.json"), json.dumps(proof, indent=2))
 
 
+def generate_registration_intent(defn, out_path, generator_version="0.1.0"):
+    intent = {
+        "plugin_id": defn.get("id"),
+        "manifest_path": "manifest.yaml",
+        "compliance_proof_path": "compliance-proof-template.json",
+        "constitution_refs": defn.get("required_constitution_refs", {}),
+        "generator_version": generator_version,
+        "generated_at": datetime.utcnow().isoformat() + "Z",
+        "status": "PENDING_KERNEL_REGISTRATION",
+    }
+    write_file(os.path.join(out_path, "registration-intent.json"), json.dumps(intent, indent=2))
+
+
 def generate_readme(defn, out_path):
     lines = []
     lines.append(f"# {defn.get('name')}")
@@ -153,6 +166,7 @@ def run(def_path, out_dir):
     generate_readme(defn, plugin_dir)
     generate_manifest(defn, plugin_dir)
     generate_compliance_proof_template(defn, plugin_dir)
+    generate_registration_intent(defn, plugin_dir)
     generate_placeholder_tests(plugin_dir)
 
     # create docs/TRACEABILITY.md
