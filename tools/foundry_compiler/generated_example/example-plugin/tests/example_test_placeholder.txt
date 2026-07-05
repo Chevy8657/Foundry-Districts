@@ -1,0 +1,3 @@
+# Example tests placeholder
+
+# Add unit tests for manifest and compliance proofs here

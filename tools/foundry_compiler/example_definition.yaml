@@ -1,0 +1,20 @@
+# Example Foundry Definition
+
+id: example-plugin
+name: Example Plugin
+short_description: >-
+  An example plugin definition used to demonstrate the minimal Foundry compiler.
+  This definition is intentionally abstract and contains no business logic.
+version: 0.1.0
+contact: team@example.org
+required_contracts:
+  - kernel:basic-contract
+outputs:
+  - evidence-pointer
+required_constitution_refs:
+  business_constitution_ref:
+    doc: docs/Foundry-Constitution.md
+    revision: "decb4a09ca6a1638b784dd782fad660e15c2f75c"
+  engineering_constitution_ref:
+    doc: docs/Engineering-Constitution.md
+    revision: "f63bc7f948dbc713058870067ead54c83d7fe2e7"
