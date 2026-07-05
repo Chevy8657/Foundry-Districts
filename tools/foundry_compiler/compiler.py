@@ -102,15 +102,22 @@ def generate_manifest(defn, out_path, generator_version="0.1.0"):
     write_file(os.path.join(out_path, "manifest.yaml"), content)
 
 
-def generate_compliance_proof_template(defn, out_path):
+def generate_compliance_proof_template(defn, out_path, generator_version="0.1.0"):
+    refs = defn.get("required_constitution_refs", {})
+    engineering_ver = refs.get("engineering_constitution_ref", {}).get("revision") if isinstance(refs.get("engineering_constitution_ref"), dict) else None
+    business_ver = refs.get("business_constitution_ref", {}).get("revision") if isinstance(refs.get("business_constitution_ref"), dict) else None
+
     proof = {
         "proof_id": f"proof-{defn.get('id')}-{datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')}",
         "plugin_id": defn.get("id"),
-        "manifest_ref": "manifest.yaml",
-        "test_suite_refs": [],
-        "human_approvals": [],
-        "referenced_constitution_revisions": defn.get("required_constitution_refs", {}),
-        "signature": None,
+        "constitution_refs": refs,
+        "engineering_constitution_version": engineering_ver,
+        "business_constitution_version": business_ver,
+        "generator_version": generator_version,
+        "validation_results": [],
+        "registration_intent_ref": "registration-intent.json",
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "status": "PENDING_KERNEL_VALIDATION",
     }
     write_file(os.path.join(out_path, "compliance-proof-template.json"), json.dumps(proof, indent=2))
 

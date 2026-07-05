@@ -1,10 +1,7 @@
 {
   "proof_id": "proof-example-plugin-20260705T000000Z",
   "plugin_id": "example-plugin",
-  "manifest_ref": "manifest.yaml",
-  "test_suite_refs": [],
-  "human_approvals": [],
-  "referenced_constitution_revisions": {
+  "constitution_refs": {
     "business_constitution_ref": {
       "doc": "docs/Foundry-Constitution.md",
       "revision": "decb4a09ca6a1638b784dd782fad660e15c2f75c"
@@ -14,5 +11,11 @@
       "revision": "f63bc7f948dbc713058870067ead54c83d7fe2e7"
     }
   },
-  "signature": null
+  "engineering_constitution_version": "f63bc7f948dbc713058870067ead54c83d7fe2e7",
+  "business_constitution_version": "decb4a09ca6a1638b784dd782fad660e15c2f75c",
+  "generator_version": "0.1.0",
+  "validation_results": [],
+  "registration_intent_ref": "registration-intent.json",
+  "timestamp": "2026-07-05T00:00:00Z",
+  "status": "PENDING_KERNEL_VALIDATION"
 }
